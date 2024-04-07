@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://cq2kcjy0ilolh"]
+
+[ext_resource type="Texture2D" uid="uid://b6ehecw4wu37f" path="res://Assets/Flappy Background.png" id="1_k4vqy"]
+[ext_resource type="PackedScene" uid="uid://dk2lpirwgep8d" path="res://Scences/Bird.tscn" id="2_qsbq2"]
+[ext_resource type="Script" path="res://Scences/PathFollow2D.gd" id="3_28uhs"]
+[ext_resource type="PackedScene" uid="uid://8mbo0nfnnp1b" path="res://Scences/Pipe Pair.tscn" id="3_ja5ru"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xryn"]
+size = Vector2(223, 20)
+
+[sub_resource type="Curve2D" id="Curve2D_xxq3m"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 90, 0, 0, 0, 0, 0, -97, 0)
+}
+point_count = 2
+
+[node name="Game" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_k4vqy")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Bird" parent="." instance=ExtResource("2_qsbq2")]
+position = Vector2(-43, -1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1, 106)
+shape = SubResource("RectangleShape2D_1xryn")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_xxq3m")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(86.9422, 0)
+rotation = 3.14159
+progress = 3.132
+script = ExtResource("3_28uhs")
+
+[node name="PipePair" parent="Path2D/PathFollow2D" instance=ExtResource("3_ja5ru")]
+
+[connection signal="pipe_loop" from="Path2D/PathFollow2D" to="Path2D/PathFollow2D/PipePair" method="_on_path_follow_2d_pipe_loop"]

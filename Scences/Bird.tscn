@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://dk2lpirwgep8d"]
+
+[ext_resource type="Script" path="res://Scripts/CharacterBody2D.gd" id="1_gy5dd"]
+[ext_resource type="Texture2D" uid="uid://c8qn80bd7t5nr" path="res://Assets/Flappy Bird sprites.png" id="2_xe3o3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vv5k8"]
+atlas = ExtResource("2_xe3o3")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j76v1"]
+atlas = ExtResource("2_xe3o3")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u00vi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vv5k8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j76v1")
+}],
+"loop": false,
+"name": &"flap",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d62xj"]
+radius = 7.0
+
+[node name="Bird" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("1_gy5dd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+unique_name_in_owner = true
+sprite_frames = SubResource("SpriteFrames_u00vi")
+animation = &"flap"
+
+[node name="Hurtbox" type="Area2D" parent="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Hurtbox"]
+shape = SubResource("CircleShape2D_d62xj")
+debug_color = Color(0.984314, 0, 0.34902, 0.419608)
+
+[connection signal="gameOver" from="CharacterBody2D" to="CharacterBody2D" method="_on_game_over"]
