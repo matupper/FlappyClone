@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Scripts/PathFollow2D.gd" id="3_28uhs"]
 [ext_resource type="PackedScene" uid="uid://8mbo0nfnnp1b" path="res://Scences/Pipe Pair.tscn" id="3_ja5ru"]
 [ext_resource type="AudioStream" uid="uid://dinyagtghho2t" path="res://Assets/flappyPoint.wav" id="6_loyyf"]
-[ext_resource type="Script" path="res://Scences/MarginContainer.gd" id="6_mbvhh"]
+[ext_resource type="Script" path="res://Scripts/MarginContainer.gd" id="6_mgjog"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xryn"]
 size = Vector2(223, 20)
@@ -57,7 +57,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("6_mbvhh")
+script = ExtResource("6_mgjog")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2

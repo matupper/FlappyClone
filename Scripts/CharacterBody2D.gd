@@ -26,5 +26,5 @@ func _physics_process(delta):
 		emit_signal("gameOver")
 		
 func _on_game_over():
-	get_tree().paused = true
+	# get_tree().paused = true
 	pass # Replace with function body.
