@@ -9,14 +9,14 @@
 [ext_resource type="Script" path="res://Scences/Label.gd" id="7_kf7dt"]
 [ext_resource type="Script" path="res://Scences/Score.gd" id="8_aa5pa"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xryn"]
-size = Vector2(223, 20)
-
 [sub_resource type="Curve2D" id="Curve2D_xxq3m"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 90, 0, 0, 0, 0, 0, -97, 0)
 }
 point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xryn"]
+size = Vector2(223, 20)
 
 [sub_resource type="SystemFont" id="SystemFont_d1p1x"]
 font_names = PackedStringArray("Impact")
@@ -28,15 +28,6 @@ position = Vector2(0, -17)
 texture = ExtResource("1_k4vqy")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-
-[node name="Bird" parent="." instance=ExtResource("2_qsbq2")]
-position = Vector2(-43, -1)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1, 106)
-shape = SubResource("RectangleShape2D_1xryn")
 
 [node name="Path2D" type="Path2D" parent="."]
 curve = SubResource("Curve2D_xxq3m")
@@ -51,6 +42,18 @@ script = ExtResource("3_28uhs")
 
 [node name="Point" type="AudioStreamPlayer2D" parent="Path2D/PathFollow2D/PipePair"]
 stream = ExtResource("6_loyyf")
+
+[node name="Timer" type="Timer" parent="Path2D/PathFollow2D"]
+autostart = true
+
+[node name="Bird" parent="." instance=ExtResource("2_qsbq2")]
+position = Vector2(-43, -1)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
+position = Vector2(1, 106)
+shape = SubResource("RectangleShape2D_1xryn")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 visible = false
@@ -158,13 +161,14 @@ theme_override_constants/shadow_offset_y = 2
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = SubResource("SystemFont_d1p1x")
 theme_override_font_sizes/font_size = 0
-text = "1"
+text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("8_aa5pa")
 
-[connection signal="gameOver" from="Bird/CharacterBody2D" to="MarginContainer" method="_on_character_body_2d_game_over"]
 [connection signal="pipe_loop" from="Path2D/PathFollow2D" to="Path2D/PathFollow2D/PipePair" method="_on_path_follow_2d_pipe_loop"]
+[connection signal="timeout" from="Path2D/PathFollow2D/Timer" to="Path2D/PathFollow2D" method="_on_timer_timeout"]
+[connection signal="gameOver" from="Bird/CharacterBody2D" to="MarginContainer" method="_on_character_body_2d_game_over"]
 [connection signal="button_up" from="MarginContainer/HBoxContainer/VBoxContainer/Play Button" to="MarginContainer" method="_on_play_button_button_up"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Quit Button" to="MarginContainer" method="_on_quit_button_pressed"]
 

@@ -19,4 +19,10 @@ func _process(delta):
 		emit_signal("pipe_loop")
 	prev = curr
 	
+	
 	pass
+
+
+func _on_timer_timeout():
+	speed += 0.01
+	pass # Replace with function body.

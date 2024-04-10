@@ -5,7 +5,5 @@ extends Label
 
 
 func _process(delta):
-	if bird.final_score > 0:
-		text = bird.final_score
-	else:
+	if bird.gameStatus == 1:
 		text = str(pipe_pair.score)

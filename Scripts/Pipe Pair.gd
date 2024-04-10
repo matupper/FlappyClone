@@ -20,7 +20,7 @@ func _process(delta):
 func _on_path_follow_2d_pipe_loop():
 	pointSFX.play()
 	var spacing = randf_range(0, 4)
-	botPipe.position.y = 80 + spacing
-	topPipe.position.y = -80 - spacing
+	botPipe.position.y = 82 + spacing
+	topPipe.position.y = -82 - spacing
 	score += 1
 	pass # Replace with function body.

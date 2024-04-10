@@ -1,9 +1,26 @@
-[gd_scene load_steps=9 format=3 uid="uid://dk2lpirwgep8d"]
+[gd_scene load_steps=14 format=3 uid="uid://dk2lpirwgep8d"]
 
 [ext_resource type="Script" path="res://Scripts/CharacterBody2D.gd" id="1_gy5dd"]
 [ext_resource type="Texture2D" uid="uid://c8qn80bd7t5nr" path="res://Assets/Flappy Bird sprites.png" id="2_xe3o3"]
 [ext_resource type="AudioStream" uid="uid://cgjdulq6a2e32" path="res://Assets/flappyjump.wav" id="3_0vim4"]
+[ext_resource type="Texture2D" uid="uid://cgtfyc85gp6ea" path="res://Assets/FlappyDeath.png" id="3_o0n3q"]
 [ext_resource type="AudioStream" uid="uid://c2f512buhm1wx" path="res://Assets/flappyHurt.wav" id="4_eotjm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1hu6h"]
+atlas = ExtResource("3_o0n3q")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfj5a"]
+atlas = ExtResource("3_o0n3q")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lr5kv"]
+atlas = ExtResource("3_o0n3q")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ro8a"]
+atlas = ExtResource("3_o0n3q")
+region = Rect2(16, 16, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vv5k8"]
 atlas = ExtResource("2_xe3o3")
@@ -15,6 +32,23 @@ region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u00vi"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1hu6h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfj5a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lr5kv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ro8a")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_vv5k8")
@@ -52,4 +86,7 @@ stream = ExtResource("3_0vim4")
 [node name="Hurt" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
 stream = ExtResource("4_eotjm")
 
+[connection signal="gameOver" from="CharacterBody2D" to="." method="_on_character_body_2d_game_over"]
 [connection signal="gameOver" from="CharacterBody2D" to="CharacterBody2D" method="_on_game_over"]
+[connection signal="animation_finished" from="CharacterBody2D/AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="animation_finished" from="CharacterBody2D/AnimatedSprite2D" to="CharacterBody2D" method="_on_animated_sprite_2d_animation_finished"]
