@@ -1,7 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dk2lpirwgep8d"]
+[gd_scene load_steps=9 format=3 uid="uid://dk2lpirwgep8d"]
 
 [ext_resource type="Script" path="res://Scripts/CharacterBody2D.gd" id="1_gy5dd"]
 [ext_resource type="Texture2D" uid="uid://c8qn80bd7t5nr" path="res://Assets/Flappy Bird sprites.png" id="2_xe3o3"]
+[ext_resource type="AudioStream" uid="uid://cgjdulq6a2e32" path="res://Assets/flappyjump.wav" id="3_0vim4"]
+[ext_resource type="AudioStream" uid="uid://c2f512buhm1wx" path="res://Assets/flappyHurt.wav" id="4_eotjm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vv5k8"]
 atlas = ExtResource("2_xe3o3")
@@ -43,5 +45,11 @@ animation = &"flap"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/Hurtbox"]
 shape = SubResource("CircleShape2D_d62xj")
 debug_color = Color(0.984314, 0, 0.34902, 0.419608)
+
+[node name="Flap" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
+stream = ExtResource("3_0vim4")
+
+[node name="Hurt" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
+stream = ExtResource("4_eotjm")
 
 [connection signal="gameOver" from="CharacterBody2D" to="CharacterBody2D" method="_on_game_over"]

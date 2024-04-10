@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://8mbo0nfnnp1b"]
 
-[ext_resource type="Script" path="res://Scences/Pipe Pair.gd" id="1_q55y7"]
+[ext_resource type="Script" path="res://Scripts/Pipe Pair.gd" id="1_q55y7"]
 [ext_resource type="PackedScene" uid="uid://dp2rto5kii0x6" path="res://Scences/Pipe.tscn" id="2_cqvft"]
 
 [node name="PipePair" type="Node2D"]
@@ -12,3 +12,8 @@ position = Vector2(0, 80)
 [node name="TopPipe" parent="." instance=ExtResource("2_cqvft")]
 position = Vector2(0, -80)
 rotation = -3.14159
+
+[node name="Sprite2D" parent="TopPipe" index="0"]
+flip_h = true
+
+[editable path="TopPipe"]

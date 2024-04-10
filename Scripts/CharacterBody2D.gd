@@ -4,6 +4,8 @@ signal gameOver
 
 @onready var sprite = $AnimatedSprite2D
 @onready var hurtbox = $Hurtbox
+@onready var jumpSFX = $Flap
+@onready var hurtSFX = $Hurt
 const JUMP_VELOCITY = -150
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -16,9 +18,11 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Flap"):
 		velocity.y = JUMP_VELOCITY
 		sprite.play("flap")
+		jumpSFX.play()
 	move_and_slide()
 
 	if hurtbox.get_overlapping_bodies().size() > 0:
+		hurtSFX.play()
 		emit_signal("gameOver")
 		
 func _on_game_over():
