@@ -1,6 +1,6 @@
 extends PathFollow2D
 
-var speed = 0.3
+var speed = 0.35
 signal pipe_loop 
 
 # Called when the node enters the scene tree for the first time.
