@@ -4,6 +4,8 @@ extends Node2D
 @onready var topPipe = $TopPipe
 @onready var pointSFX = $Point
 
+var score = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
@@ -20,4 +22,5 @@ func _on_path_follow_2d_pipe_loop():
 	var spacing = randf_range(0, 4)
 	botPipe.position.y = 80 + spacing
 	topPipe.position.y = -80 - spacing
+	score += 1
 	pass # Replace with function body.

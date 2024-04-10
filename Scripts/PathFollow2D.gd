@@ -1,6 +1,6 @@
 extends PathFollow2D
 
-var speed = 0.003
+var speed = 0.3
 signal pipe_loop 
 
 # Called when the node enters the scene tree for the first time.
@@ -11,7 +11,7 @@ func _ready():
 var prev = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	progress_ratio += speed
+	progress_ratio += speed * delta
 	
 	var curr = progress_ratio
 	if curr < prev:

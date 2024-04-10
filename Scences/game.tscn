@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cq2kcjy0ilolh"]
+[gd_scene load_steps=12 format=3 uid="uid://cq2kcjy0ilolh"]
 
 [ext_resource type="Texture2D" uid="uid://b6ehecw4wu37f" path="res://Assets/Flappy Background.png" id="1_k4vqy"]
 [ext_resource type="PackedScene" uid="uid://dk2lpirwgep8d" path="res://Scences/Bird.tscn" id="2_qsbq2"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://8mbo0nfnnp1b" path="res://Scences/Pipe Pair.tscn" id="3_ja5ru"]
 [ext_resource type="AudioStream" uid="uid://dinyagtghho2t" path="res://Assets/flappyPoint.wav" id="6_loyyf"]
 [ext_resource type="Script" path="res://Scripts/MarginContainer.gd" id="6_mgjog"]
+[ext_resource type="Script" path="res://Scences/Label.gd" id="7_kf7dt"]
+[ext_resource type="Script" path="res://Scences/Score.gd" id="8_aa5pa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1xryn"]
 size = Vector2(223, 20)
@@ -131,6 +133,35 @@ theme_override_constants/outline_size = 4
 theme_override_fonts/font = SubResource("SystemFont_d1p1x")
 theme_override_font_sizes/font_size = 0
 text = "Quit"
+
+[node name="FPS" type="Label" parent="."]
+offset_left = -72.0
+offset_top = -78.0
+offset_right = -32.0
+offset_bottom = -55.0
+script = ExtResource("7_kf7dt")
+
+[node name="Score" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -3.0
+offset_top = -66.0
+offset_right = 4.0
+offset_bottom = -45.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.937255, 0.901961, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("SystemFont_d1p1x")
+theme_override_font_sizes/font_size = 0
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_aa5pa")
 
 [connection signal="gameOver" from="Bird/CharacterBody2D" to="MarginContainer" method="_on_character_body_2d_game_over"]
 [connection signal="pipe_loop" from="Path2D/PathFollow2D" to="Path2D/PathFollow2D/PipePair" method="_on_path_follow_2d_pipe_loop"]

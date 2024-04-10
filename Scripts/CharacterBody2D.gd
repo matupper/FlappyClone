@@ -2,11 +2,14 @@ extends CharacterBody2D
 
 signal gameOver
 
+@onready var pipe_pair = $Path2D/PathFollow2D/PipePair
+
 @onready var sprite = $AnimatedSprite2D
 @onready var hurtbox = $Hurtbox
 @onready var jumpSFX = $Flap
 @onready var hurtSFX = $Hurt
 const JUMP_VELOCITY = -150
+var final_score = 0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = 400.0
