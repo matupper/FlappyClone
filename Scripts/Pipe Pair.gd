@@ -3,6 +3,7 @@ extends Node2D
 @onready var botPipe = $BotPipe
 @onready var topPipe = $TopPipe
 @onready var pointSFX = $Point
+@onready var bird = $"../../../Bird/CharacterBody2D"
 
 var score = 0
 
@@ -18,7 +19,8 @@ func _process(delta):
 
 
 func _on_path_follow_2d_pipe_loop():
-	pointSFX.play()
+	if bird.gameStatus == 1:
+		pointSFX.play()
 	var spacing = randf_range(0, 4)
 	botPipe.position.y = 82 + spacing
 	topPipe.position.y = -82 - spacing
