@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2pjfn6024hsa"]
+
+[ext_resource type="Script" path="res://Scences/ParallaxBackground.gd" id="1_0fa4a"]
+[ext_resource type="Texture2D" uid="uid://tod1ug2nxhnv" path="res://Assets/Flappy BG.png" id="1_hphrv"]
+
+[node name="Background" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("1_0fa4a")
+
+[node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(144, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Sky"]
+position = Vector2(72, 78)
+texture = ExtResource("1_hphrv")
+region_enabled = true
+region_rect = Rect2(0, 0, 144, 156)
+
+[node name="Cloud" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(144, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Cloud"]
+position = Vector2(72, 79)
+texture = ExtResource("1_hphrv")
+region_enabled = true
+region_rect = Rect2(144, 0, 144, 156)
+
+[node name="City" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(144, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/City"]
+position = Vector2(72, 79)
+texture = ExtResource("1_hphrv")
+region_enabled = true
+region_rect = Rect2(0, 156, 144, 156)
+
+[node name="Tree" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(144, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Tree"]
+position = Vector2(72, 79)
+texture = ExtResource("1_hphrv")
+region_enabled = true
+region_rect = Rect2(144, 156, 144, 156)

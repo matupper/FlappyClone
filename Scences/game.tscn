@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cq2kcjy0ilolh"]
+[gd_scene load_steps=13 format=3 uid="uid://cq2kcjy0ilolh"]
 
 [ext_resource type="Texture2D" uid="uid://b6ehecw4wu37f" path="res://Assets/Flappy Background.png" id="1_k4vqy"]
+[ext_resource type="PackedScene" uid="uid://c2pjfn6024hsa" path="res://Scences/background.tscn" id="2_64rjj"]
 [ext_resource type="PackedScene" uid="uid://dk2lpirwgep8d" path="res://Scences/Bird.tscn" id="2_qsbq2"]
 [ext_resource type="Script" path="res://Scripts/PathFollow2D.gd" id="3_28uhs"]
 [ext_resource type="PackedScene" uid="uid://8mbo0nfnnp1b" path="res://Scences/Pipe Pair.tscn" id="3_ja5ru"]
@@ -24,12 +25,29 @@ font_names = PackedStringArray("Impact")
 [node name="Game" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -17)
 texture = ExtResource("1_k4vqy")
 
+[node name="Background" parent="." instance=ExtResource("2_64rjj")]
+
+[node name="Sky" parent="Background/ParallaxBackground" index="0"]
+position = Vector2(0, -1)
+
+[node name="Cloud" parent="Background/ParallaxBackground" index="1"]
+position = Vector2(0, -1)
+
+[node name="City" parent="Background/ParallaxBackground" index="2"]
+position = Vector2(0, -1)
+
+[node name="Tree" parent="Background/ParallaxBackground" index="3"]
+position = Vector2(0, -1)
+
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(72, 78)
 
 [node name="Path2D" type="Path2D" parent="."]
+position = Vector2(70, 73)
 curve = SubResource("Curve2D_xxq3m")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
@@ -47,9 +65,10 @@ stream = ExtResource("6_loyyf")
 autostart = true
 
 [node name="Bird" parent="." instance=ExtResource("2_qsbq2")]
-position = Vector2(-43, -1)
+position = Vector2(23, 71)
 
 [node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(65, 70)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 position = Vector2(1, 106)
@@ -57,12 +76,13 @@ shape = SubResource("RectangleShape2D_1xryn")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = 37.0
+offset_top = 16.0
+offset_right = 107.0
+offset_bottom = 144.0
+size_flags_horizontal = 4
 script = ExtResource("6_mgjog")
+metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -138,21 +158,22 @@ theme_override_font_sizes/font_size = 0
 text = "Quit"
 
 [node name="FPS" type="Label" parent="."]
-offset_left = -72.0
-offset_top = -78.0
-offset_right = -32.0
-offset_bottom = -55.0
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
 script = ExtResource("7_kf7dt")
 
 [node name="Score" type="Label" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -3.0
-offset_top = -66.0
-offset_right = 4.0
-offset_bottom = -45.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 66.0
+offset_top = 8.0
+offset_right = 75.0
+offset_bottom = 29.0
 grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.937255, 0.901961, 0, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -172,4 +193,5 @@ script = ExtResource("8_aa5pa")
 [connection signal="button_up" from="MarginContainer/HBoxContainer/VBoxContainer/Play Button" to="MarginContainer" method="_on_play_button_button_up"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Quit Button" to="MarginContainer" method="_on_quit_button_pressed"]
 
+[editable path="Background"]
 [editable path="Bird"]
